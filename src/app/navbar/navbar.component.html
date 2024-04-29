@@ -1,0 +1,43 @@
+<mat-sidenav-container class="h-dvh">
+  <!-- sidenav -->
+  <mat-sidenav #sidenav>
+    <mat-drawer-container class="w-48">
+      <mat-nav-list>
+        <ul>
+          <a mat-list-item routerLink="/" (click)="sidenav.close()">
+            <mat-icon>home</mat-icon>
+            Home
+          </a>
+          <a mat-list-item routerLink="signup" (click)="sidenav.close()">
+            <mat-icon>person_add</mat-icon>
+            Sign Up
+          </a>
+          <a mat-list-item routerLink="login" (click)="sidenav.close()">
+            <mat-icon>login</mat-icon>
+            Log In
+          </a>
+        </ul>
+      </mat-nav-list>
+    </mat-drawer-container>
+  </mat-sidenav>
+
+  <!-- toolbar -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="flex justify-between">
+      <a routerLink="/" class="text-2xl">My App</a>
+      <div class="hidden sm:block">
+        <ul class="flex gap-4">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="login">Log In</a></li>
+          <li><a routerLink="signup">Sign Up</a></li>
+        </ul>
+      </div>
+      <div class="sm:hidden">
+        <button mat-icon-button (click)="sidenav.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
