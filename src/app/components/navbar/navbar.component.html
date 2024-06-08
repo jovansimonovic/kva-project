@@ -5,16 +5,22 @@
       <mat-nav-list>
         <ul>
           <a mat-list-item routerLink="/" (click)="sidenav.close()">
-            <mat-icon>home</mat-icon>
-            Home
+            <div class="flex">
+              <mat-icon>home</mat-icon>
+              Home
+            </div>
           </a>
-          <a mat-list-item routerLink="signup" (click)="sidenav.close()">
-            <mat-icon>person_add</mat-icon>
-            Sign Up
+          <a mat-list-item routerLink="/product-list" (click)="sidenav.close()">
+            <div class="flex">
+              <mat-icon>grid_view</mat-icon>
+              Products
+            </div>
           </a>
           <a mat-list-item routerLink="login" (click)="sidenav.close()">
-            <mat-icon>login</mat-icon>
-            Log In
+            <div class="flex">
+              <mat-icon>login</mat-icon>
+              Log In
+            </div>
           </a>
         </ul>
       </mat-nav-list>
@@ -23,13 +29,13 @@
 
   <!-- toolbar -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="flex justify-between">
-      <a routerLink="/" class="text-2xl">My App</a>
+    <mat-toolbar color="primary" class="flex justify-between fixed top-0 z-10">
+      <a routerLink="/" class="text-2xl">KVA Project</a>
       <div class="hidden sm:block">
         <ul class="flex gap-4">
           <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="product-list">Products</a></li>
           <li><a routerLink="login">Log In</a></li>
-          <li><a routerLink="signup">Sign Up</a></li>
         </ul>
       </div>
       <div class="sm:hidden">

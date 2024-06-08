@@ -7,9 +7,18 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MaterialModule } from './material-module.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { ProfileComponent } from './auth/profile/profile.component';
+import { ProfileComponent } from './user/profile/profile.component';
 import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { UserService } from './services/user.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +28,21 @@ import { NavbarComponent } from './navbar/navbar.component';
     ProfileComponent,
     HomeComponent,
     NavbarComponent,
+    FooterComponent,
+    ProductListComponent,
+    ProductDetailsComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule],
-  providers: [provideAnimationsAsync()],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  providers: [provideAnimationsAsync(), UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
