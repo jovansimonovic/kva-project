@@ -1,46 +1,24 @@
 <div class="flex flex-wrap justify-center items-center mt-20">
-  <mat-card class="example-card w-64 m-2">
-    <mat-card-header class="text-center">
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Shiba Inu</mat-card-subtitle>
-      <div mat-card-avatar class="example-header-image"></div>
-    </mat-card-header>
-    <img
-      mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      alt="Photo of a Shiba Inu"
-    />
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz
-        breeds of dog from Japan.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="flex justify-between">
-      <span class="text-xl">29.99€</span>
-      <button mat-icon-button><mat-icon>add_shopping_cart</mat-icon></button>
-    </mat-card-actions>
-  </mat-card>
-  <mat-card class="example-card w-64 m-2">
-    <mat-card-header class="text-center">
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Shiba Inu</mat-card-subtitle>
-      <div mat-card-avatar class="example-header-image"></div>
-    </mat-card-header>
-    <img
-      mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      alt="Photo of a Shiba Inu"
-    />
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz
-        breeds of dog from Japan.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="flex justify-between">
-      <span class="text-xl">29.99€</span>
-      <button mat-icon-button><mat-icon>add_shopping_cart</mat-icon></button>
-    </mat-card-actions>
-  </mat-card>
+  <div *ngFor="let product of products">
+    <mat-card class="example-card w-64 m-2">
+      <mat-card-header class="flex justify-center">
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle class="text-center">{{ product.category }}</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        [src]="product.image"
+        alt="Product image"
+      />
+      <mat-card-content>
+        <p>
+          {{ product.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="flex justify-between">
+        <span class="text-xl">{{ product.price }}€</span>
+        <button mat-icon-button><mat-icon>add_shopping_cart</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

@@ -104,8 +104,7 @@ export class UserService {
     UserService.dummyUserList.push(user);
 
     this.currentUser = user;
-
-    console.log(user);
+    
     return user;
   }
 }

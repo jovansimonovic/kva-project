@@ -18,7 +18,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ProductListComponent,
     ProductDetailsComponent,
     CartComponent,
-    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
