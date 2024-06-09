@@ -33,7 +33,7 @@ export class LoginComponent {
       this.router.navigate(['']);
     } else {
       this.errorExists = true;
-      this.errorText = 'Incorrect email or password';
+      this.errorText = 'Incorrect password';
     }
   }
 }

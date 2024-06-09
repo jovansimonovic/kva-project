@@ -3,12 +3,15 @@
     <mat-card class="example-card w-64 m-2">
       <mat-card-header class="flex justify-center">
         <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle class="text-center">{{ product.category }}</mat-card-subtitle>
+        <mat-card-subtitle class="text-center">{{
+          product.category
+        }}</mat-card-subtitle>
       </mat-card-header>
       <img
         mat-card-image
         [src]="product.image"
         alt="Product image"
+        class="w-full h-[200px] object-cover"
       />
       <mat-card-content>
         <p>
@@ -21,4 +24,20 @@
       </mat-card-actions>
     </mat-card>
   </div>
+</div>
+<div class="flex justify-center">
+  <mat-paginator
+    #paginator
+    class="demo-paginator"
+    (page)="handlePageEvent($event)"
+    [length]="length"
+    [pageSize]="pageSize"
+    [disabled]="disabled"
+    [showFirstLastButtons]="showFirstLastButtons"
+    [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+    [hidePageSize]="hidePageSize"
+    [pageIndex]="pageIndex"
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </div>

@@ -5,19 +5,19 @@
       <mat-nav-list>
         <ul>
           <a mat-list-item routerLink="/" (click)="sidenav.close()">
-            <div class="flex">
+            <div class="flex gap-2">
               <mat-icon>home</mat-icon>
               Home
             </div>
           </a>
           <a mat-list-item routerLink="/product-list" (click)="sidenav.close()">
-            <div class="flex">
+            <div class="flex gap-2">
               <mat-icon>grid_view</mat-icon>
               Products
             </div>
           </a>
           <a mat-list-item routerLink="login" (click)="sidenav.close()">
-            <div class="flex">
+            <div class="flex gap-2">
               <mat-icon>login</mat-icon>
               Log In
             </div>
@@ -32,13 +32,21 @@
     <mat-toolbar color="primary" class="flex justify-between fixed top-0 z-10">
       <a routerLink="/" class="text-2xl">KVA Clothes</a>
       <div class="hidden sm:block">
-        <ul class="flex gap-4">
-          <li><a routerLink="/">Home</a></li>
-          <li><a routerLink="product-list">Products</a></li>
-          <li><a routerLink="login">Log In</a></li>
+        <ul class="flex gap-2">
+          <li><button mat-button routerLink="/">Home</button></li>
+          <li><button mat-button routerLink="product-list">Products</button></li>
         </ul>
       </div>
+      <div class="hidden sm:flex items-center gap-2">
+        <button mat-icon-button routerLink="cart">
+          <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+        </button>
+        <button mat-raised-button color="accent" routerLink="login">Log In</button>
+      </div>
       <div class="sm:hidden">
+        <button mat-icon-button routerLink="cart">
+          <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+        </button>
         <button mat-icon-button (click)="sidenav.open()">
           <mat-icon>menu</mat-icon>
         </button>
