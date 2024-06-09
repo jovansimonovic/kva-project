@@ -46,8 +46,10 @@ export class ProductService {
       description: "A white polo shirt with black and gray floral details",
       category: "Casual"
     },
+    
   ];
 
+  // returns all products
   getAllProducts() {
     return ProductService.dummyProductList;
   }

@@ -1,43 +1,50 @@
-<div class="flex flex-wrap justify-center items-center mt-20">
-  <div *ngFor="let product of products">
-    <mat-card class="example-card w-64 m-2">
-      <mat-card-header class="flex justify-center">
-        <mat-card-title>{{ product.name }}</mat-card-title>
-        <mat-card-subtitle class="text-center">{{
-          product.category
-        }}</mat-card-subtitle>
-      </mat-card-header>
-      <img
-        mat-card-image
-        [src]="product.image"
-        alt="Product image"
-        class="w-full h-[200px] object-cover"
+<div class="my-20">
+  <div class="text-center">
+    <mat-form-field class="w-[350px]">
+      <input
+        type="text"
+        matInput
+        placeholder="Find your piece"
+        (input)="doSearch($any($event.target).value)"
       />
-      <mat-card-content>
-        <p>
-          {{ product.description }}
-        </p>
-      </mat-card-content>
-      <mat-card-actions class="flex justify-between">
-        <span class="text-xl">{{ product.price }}€</span>
-        <button mat-icon-button><mat-icon>add_shopping_cart</mat-icon></button>
-      </mat-card-actions>
-    </mat-card>
+    </mat-form-field>
   </div>
-</div>
-<div class="flex justify-center">
-  <mat-paginator
-    #paginator
-    class="demo-paginator"
-    (page)="handlePageEvent($event)"
-    [length]="length"
-    [pageSize]="pageSize"
-    [disabled]="disabled"
-    [showFirstLastButtons]="showFirstLastButtons"
-    [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
-    [hidePageSize]="hidePageSize"
-    [pageIndex]="pageIndex"
-    aria-label="Select page"
-  >
-  </mat-paginator>
+  <div class="flex flex-wrap justify-center items-center">
+    <div *ngFor="let product of paginatedProducts">
+      <mat-card class="example-card w-64 m-2">
+        <mat-card-header class="flex justify-center">
+          <mat-card-title>{{ product.name }}</mat-card-title>
+          <mat-card-subtitle class="text-center">{{
+            product.category
+          }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          [src]="product.image"
+          alt="Product image"
+          class="w-full h-[200px] object-cover"
+        />
+        <mat-card-content>
+          <p>
+            {{ product.description }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="flex justify-between">
+          <span class="text-xl">{{ product.price }}€</span>
+          <button mat-icon-button>
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div class="flex justify-center mt-4">
+    <mat-paginator
+      [length]="totalProducts"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      (page)="handlePageChange($event)"
+    >
+    </mat-paginator>
+  </div>
 </div>

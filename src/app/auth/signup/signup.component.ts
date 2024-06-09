@@ -10,8 +10,10 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   constructor(private userService: UserService, private router: Router) {}
+  
   errorExists = false;
   errorText = '';
+
   onSubmit(form: NgForm) {
     if (!this.userService.getUserByEmail(form.value.email)) {
       this.errorExists = false;
