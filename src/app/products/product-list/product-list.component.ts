@@ -13,9 +13,9 @@ export class ProductListComponent implements OnInit {
 
   totalProducts!: number;
   paginatedProducts!: Array<Product>;
-  pageSize = 5;
+  pageSize = 8;
   currentPage = 0;
-  pageSizeOptions = [5, 10, 15, 20];
+  pageSizeOptions = [4, 8, 12, 16, 20];
   showPageSizeOptions = true;
 
   ngOnInit(): void {
@@ -46,8 +46,10 @@ export class ProductListComponent implements OnInit {
     const searchTerm = inputValue.trim().toLowerCase();
 
     if (searchTerm) {
-      this.filteredProducts = this.products.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm)
+      this.filteredProducts = this.products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.category.toLowerCase().includes(searchTerm)
       );
     } else {
       this.filteredProducts = this.products;
@@ -56,7 +58,5 @@ export class ProductListComponent implements OnInit {
     this.totalProducts = this.filteredProducts.length;
     this.currentPage = 0;
     this.paginateProducts();
-
-    console.log(this.filteredProducts);
   }
 }

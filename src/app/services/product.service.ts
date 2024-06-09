@@ -6,7 +6,7 @@ export interface Product {
   price: number;
   image: string;
   description: string;
-  category: "Sport" | "Work" | "Formal" | "Casual"
+  category: 'Casual' | 'Sport' | 'Formal';
 }
 
 @Injectable({
@@ -18,35 +18,77 @@ export class ProductService {
       id: 0,
       name: 'Brown t-shirt',
       price: 10,
-      image: 'https://st.mngbcn.com/rcs/pics/static/T6/fotos/S20/67034456_09.jpg?ts=1703239418849&imwidth=360&imdensity=2',
-      description: "A minimalistic brown shirt made from breathable material",
-      category: "Casual"
+      image:
+        'https://st.mngbcn.com/rcs/pics/static/T6/fotos/S20/67034456_09.jpg?ts=1703239418849&imwidth=360&imdensity=2',
+      description: 'Minimalistic brown shirt for everyday occasions',
+      category: 'Casual',
     },
     {
       id: 1,
-      name: 'Black t-shirt',
-      price: 10,
-      image: 'https://contents.mediadecathlon.com/p2567760/06cf21e3f5a8a75af7ac0659729255e7/p2567760.jpg?format=auto&f=768x0',
-      description: "A minimalistic black shirt made from breathable material",
-      category: "Casual"
+      name: 'Purple shirt',
+      price: 19.99,
+      image:
+        'https://assets.ajio.com/medias/sys_master/root/20231012/SHy7/65280fb2ddf779151937c284/-473Wx593H-469514976-purple-MODEL.jpg',
+      description: 'Minimalistic shirt for formal occasions',
+      category: 'Formal',
     },
     {
       id: 2,
-      name: 'Gray & Black t-shirt',
-      price: 14,
-      image: 'https://assets.ajio.com/medias/sys_master/root/20230906/eROP/64f81a3cddf7791519a779ad/-1117Wx1400H-461093327-grey-MODEL.jpg',
-      description: "A gray shirt with abstract black accents",
-      category: "Casual"
+      name: 'Black compression shirt',
+      price: 24,
+      image:
+        'https://vader-prod.s3.amazonaws.com/1644955870-AO7I7572-small_1080x.jpg',
+      description:
+        'Compression shirt made from breathable and non-irritating materials',
+      category: 'Sport',
     },
     {
       id: 3,
-      name: 'White & Black polo shirt',
-      price: 16.99,
-      image: 'https://www.ottostore.com/cdn/shop/files/Shot-11_400x.jpg?v=1711441230',
-      description: "A white polo shirt with black and gray floral details",
-      category: "Casual"
+      name: 'Black bomber jacket',
+      price: 29.99,
+      image: 'https://m.media-amazon.com/images/I/71VFs2XrDVL._AC_UY350_.jpg',
+      description:
+        'Lightweight versatile jacket that will keep you warm and stylish',
+      category: 'Casual',
     },
-    
+    {
+      id: 4,
+      name: 'Jeans shorts',
+      price: 20,
+      image:
+        'https://cheapsalemarket.com/wp-content/uploads/2021/06/Summer-Mid-Knee-Length-Men-Short-Jeans-Denim-Pants3.jpg',
+      description: 'Shorts made from jeans. Ideal for hot summer days',
+      category: 'Casual',
+    },
+    {
+      id: 5,
+      name: 'Black cargo pants',
+      price: 30,
+      image:
+        'https://i.pinimg.com/736x/92/1e/93/921e93d7a9cf44af2c94cf79e263f91c.jpg',
+      description: 'Baggy pants made for tech savvies',
+      category: 'Casual',
+    },
+    {
+      id: 6,
+      name: 'Black sweatpants',
+      price: 28.99,
+      image:
+        'https://i.pinimg.com/736x/bb/e5/2a/bbe52a9d74c0834e3ddb7b3d7bfbbe56.jpg',
+      description:
+        'Made from lightweight and breathable fabric',
+      category: 'Sport',
+    },
+    {
+      id: 7,
+      name: 'Nike Dunk High',
+      price: 28.99,
+      image:
+        'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png',
+      description:
+        'Made from lightweight and breathable fabric',
+      category: 'Casual',
+    },
   ];
 
   // returns all products

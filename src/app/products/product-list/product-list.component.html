@@ -11,7 +11,7 @@
   </div>
   <div class="flex flex-wrap justify-center items-center">
     <div *ngFor="let product of paginatedProducts">
-      <mat-card class="example-card w-64 m-2">
+      <mat-card class="w-72 m-4 hover:scale-105 duration-300 cursor-pointer" routerLink="/product-details">
         <mat-card-header class="flex justify-center">
           <mat-card-title>{{ product.name }}</mat-card-title>
           <mat-card-subtitle class="text-center">{{
@@ -22,9 +22,9 @@
           mat-card-image
           [src]="product.image"
           alt="Product image"
-          class="w-full h-[200px] object-cover"
+          class="w-full h-[250px] object-cover"
         />
-        <mat-card-content>
+        <mat-card-content class="text-center">
           <p>
             {{ product.description }}
           </p>
