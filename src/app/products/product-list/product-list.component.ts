@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, ProductService } from '../../services/product.service';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -13,9 +14,9 @@ export class ProductListComponent implements OnInit {
 
   totalProducts!: number;
   paginatedProducts!: Array<Product>;
-  pageSize = 8;
+  pageSize = 5;
   currentPage = 0;
-  pageSizeOptions = [4, 8, 12, 16, 20];
+  pageSizeOptions = [5, 10, 15, 20];
   showPageSizeOptions = true;
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class ProductListComponent implements OnInit {
     this.paginateProducts();
   }
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   // handles page change
   handlePageChange(event: PageEvent) {
@@ -58,5 +59,11 @@ export class ProductListComponent implements OnInit {
     this.totalProducts = this.filteredProducts.length;
     this.currentPage = 0;
     this.paginateProducts();
+  }
+
+  // redirects to product details component
+  // and passes the id of clicked product
+  viewProductDetails(id: number) {
+    this.router.navigate(['/product-list', id]);
   }
 }

@@ -40,7 +40,7 @@ export class UserService {
   getUserById(id: number): User {
     let foundUser!: User;
 
-    UserService.dummyUserList.forEach((user) => {
+    UserService.dummyUserList.find((user) => {
       if (user.id === id) {
         foundUser = user;
       }
@@ -108,6 +108,8 @@ export class UserService {
     return user;
   }
 
+  //* todo: move these to AuthService *//
+  
   // logs the user in
   login(user: User) {
     localStorage.setItem('user', JSON.stringify(user));

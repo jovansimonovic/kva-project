@@ -75,8 +75,7 @@ export class ProductService {
       price: 28.99,
       image:
         'https://i.pinimg.com/736x/bb/e5/2a/bbe52a9d74c0834e3ddb7b3d7bfbbe56.jpg',
-      description:
-        'Made from lightweight and breathable fabric',
+      description: 'Made from lightweight and breathable fabric',
       category: 'Sport',
     },
     {
@@ -85,8 +84,7 @@ export class ProductService {
       price: 28.99,
       image:
         'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png',
-      description:
-        'Made from lightweight and breathable fabric',
+      description: 'Made from lightweight and breathable fabric',
       category: 'Casual',
     },
   ];
@@ -94,5 +92,18 @@ export class ProductService {
   // returns all products
   getAllProducts() {
     return ProductService.dummyProductList;
+  }
+
+  // returns product based on the provided id
+  getProductById(id: number): Product {
+    let foundProduct!: Product;
+
+    ProductService.dummyProductList.find((product) => {
+      if (product.id === id) {
+        foundProduct = product;
+      }
+    });
+
+    return foundProduct;
   }
 }

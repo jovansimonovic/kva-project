@@ -1,3 +1,9 @@
-<div class="grid place-items-center h-dvh">
-  <p>product-details works!</p>
+<div class="h-dvh grid place-content-center">
+  <div *ngIf="product">
+    <p>{{ product.image }}</p>
+    <p>{{ product.name }}</p>
+    <p>{{ product.description }}</p>
+    <p>{{ product.category }}</p>
+    <p>{{ product.price }}€</p>
+  </div>
 </div>

@@ -4,14 +4,17 @@
       <input
         type="text"
         matInput
-        placeholder="Find your piece"
+        placeholder="Search by name or category"
         (input)="doSearch($any($event.target).value)"
       />
     </mat-form-field>
   </div>
   <div class="flex flex-wrap justify-center items-center">
     <div *ngFor="let product of paginatedProducts">
-      <mat-card class="w-72 m-4 hover:scale-105 duration-300 cursor-pointer" routerLink="/product-details">
+      <mat-card
+        class="w-72 m-4 hover:scale-105 duration-300 cursor-pointer"
+        (click)="viewProductDetails(product.id)"
+      >
         <mat-card-header class="flex justify-center">
           <mat-card-title>{{ product.name }}</mat-card-title>
           <mat-card-subtitle class="text-center">{{
