@@ -8,8 +8,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
-import {MatCardModule} from '@angular/material/card';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatDatepickerModule,
     MatSelectModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatToolbarModule,
@@ -36,7 +38,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatDatepickerModule,
     MatSelectModule,
     MatCardModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}

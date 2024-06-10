@@ -15,8 +15,6 @@ export interface User {
 
 @Injectable()
 export class UserService {
-  currentUser = UserService.dummyUserList[0];
-
   static dummyUserList: Array<User> = [
     {
       id: 0,
@@ -30,6 +28,8 @@ export class UserService {
       phoneNumber: '601234567',
     },
   ];
+
+  currentUser?: User;
 
   // returns the user's email
   getUserEmail(user: User): string {
@@ -104,7 +104,22 @@ export class UserService {
     UserService.dummyUserList.push(user);
 
     this.currentUser = user;
-    
+
     return user;
+  }
+
+  // logs the user in
+  login(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  // checks if the user is logged in
+  isLoggedIn() {
+    return JSON.parse(localStorage.getItem('user')!);
+  }
+
+  // logs the user out
+  logout() {
+    localStorage.removeItem('user');
   }
 }
