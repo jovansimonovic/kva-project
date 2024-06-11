@@ -18,6 +18,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
+import { ProductService } from './services/product.service';
+import { CartService } from './services/cart.service';
+import { EditComponent } from './user/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { CartComponent } from './cart/cart.component';
     ProductListComponent,
     ProductDetailsComponent,
     CartComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { CartComponent } from './cart/cart.component';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [provideAnimationsAsync(), UserService],
+  providers: [provideAnimationsAsync(), UserService, ProductService, CartService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

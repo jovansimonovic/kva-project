@@ -23,6 +23,12 @@ export class SignupComponent {
     if (!this.userService.getUserByEmail(form.value.email)) {
       this.errorExists = false;
 
+      let phoneNumber = form.value.phoneNumber;
+
+      if (phoneNumber.charAt(0) === '0') {
+        phoneNumber = phoneNumber.slice(1);
+      }
+
       this.userService.registerUser(
         form.value.firstName,
         form.value.lastName,
@@ -31,7 +37,7 @@ export class SignupComponent {
         form.value.address,
         form.value.city,
         form.value.zipCode,
-        form.value.phoneNumber
+        phoneNumber
       );
 
       this.snackBar.open(

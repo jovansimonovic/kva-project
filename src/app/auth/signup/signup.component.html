@@ -11,7 +11,7 @@
           ngModel
           #firstName="ngModel"
         />
-        <mat-error> Can't be empty</mat-error>
+        <mat-error>Must be filled</mat-error>
       </mat-form-field>
       <mat-form-field class="mx-1 w-[206px]">
         <mat-label>Last name</mat-label>
@@ -24,7 +24,7 @@
           #lastName="ngModel"
         />
         <mat-error *ngIf="lastName.hasError('required')">
-          Can't be empty
+          Must be filled
         </mat-error>
       </mat-form-field>
     </div>
@@ -40,9 +40,7 @@
         #email="ngModel"
       />
       <mat-icon matIconSuffix>email</mat-icon>
-      <mat-error *ngIf="email.hasError('required')">
-        This field should not be empty
-      </mat-error>
+      <mat-error *ngIf="email.hasError('required')"> Must be filled </mat-error>
       <mat-error *ngIf="email.hasError('email')">
         This field should be in a valid email format
       </mat-error>
@@ -76,7 +74,7 @@
       />
       <mat-icon matIconSuffix>home</mat-icon>
       <mat-error *ngIf="address.hasError('required')">
-        This field should not be empty
+        Must be filled
       </mat-error>
     </mat-form-field>
     <div>
@@ -92,7 +90,7 @@
         />
         <mat-icon matIconSuffix>location_on</mat-icon>
         <mat-error *ngIf="city.hasError('required')">
-          Can't be empty
+          Must be filled
         </mat-error>
       </mat-form-field>
       <mat-form-field class="mx-1 w-[171px]">
@@ -109,7 +107,7 @@
         />
         <mat-icon matIconSuffix>pin</mat-icon>
         <mat-error *ngIf="zipCode.hasError('required')">
-          Can't be empty
+          Must be filled
         </mat-error>
       </mat-form-field>
     </div>
@@ -126,7 +124,7 @@
       />
       <mat-icon matIconSuffix>phone</mat-icon>
       <mat-error *ngIf="phoneNumber.hasError('required')">
-        This field should not be empty
+        Must be filled
       </mat-error>
     </mat-form-field>
     <br />

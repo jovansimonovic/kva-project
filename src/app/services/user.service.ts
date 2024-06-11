@@ -36,11 +36,6 @@ export class UserService {
   private loginStatus = new BehaviorSubject<boolean>(this.isLoggedIn());
   isLoggedIn$ = this.loginStatus.asObservable();
 
-  // returns the user's email
-  getUserEmail(user: User): string {
-    return user.email;
-  }
-
   // returns user based on the provided id
   getUserById(id: number): User {
     let foundUser!: User;
@@ -111,6 +106,11 @@ export class UserService {
     this.currentUser = user;
 
     return user;
+  }
+
+  // updates user data
+  editUser(user: User) {
+
   }
 
   //* todo: move these to AuthService *//
