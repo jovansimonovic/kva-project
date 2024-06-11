@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 export interface User {
   id: number;
@@ -30,6 +31,10 @@ export class UserService {
   ];
 
   currentUser?: User;
+
+  // tracks the login state of user
+  private loginStatus = new BehaviorSubject<boolean>(this.isLoggedIn());
+  isLoggedIn$ = this.loginStatus.asObservable();
 
   // returns the user's email
   getUserEmail(user: User): string {
@@ -113,15 +118,17 @@ export class UserService {
   // logs the user in
   login(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
+    this.loginStatus.next(true);
   }
 
   // checks if the user is logged in
   isLoggedIn() {
-    return JSON.parse(localStorage.getItem('user')!);
+    return !!localStorage.getItem("user");
   }
 
   // logs the user out
   logout() {
     localStorage.removeItem('user');
+    this.loginStatus.next(false);
   }
 }
