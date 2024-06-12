@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User, UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditComponent } from '../edit/edit.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',

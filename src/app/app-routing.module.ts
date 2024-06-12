@@ -7,7 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
-import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
