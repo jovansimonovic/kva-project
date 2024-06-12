@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { User, UserService } from '../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-edit',
@@ -11,9 +11,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EditComponent {
   constructor(
+    private dialog: MatDialog,
     private userService: UserService,
-    private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: User
+    private snackBar: MatSnackBar
   ) {}
 
   currentUser = JSON.parse(localStorage.getItem('user')!);
@@ -30,16 +30,20 @@ export class EditComponent {
       phoneNumber = phoneNumber.slice(1);
     }
 
+    this.userService.updateUser(this.currentUser);
+
     this.userService.registerUser(
-      form.value.firstName,
-      form.value.lastName,
-      form.value.email,
-      form.value.password,
-      form.value.address,
-      form.value.city,
-      form.value.zipCode,
-      phoneNumber
+      this.currentUser.firstName,
+      this.currentUser.lastName,
+      this.currentUser.email,
+      this.currentUser.password,
+      this.currentUser.address,
+      this.currentUser.city,
+      this.currentUser.zipCode,
+      this.currentUser.phoneNumber
     );
+
+    this.closeDialog();
 
     this.snackBar.open('Profile updated successfully!', 'Close', {
       duration: 5000,
@@ -47,6 +51,6 @@ export class EditComponent {
   }
 
   closeDialog() {
-    
+    this.dialog.closeAll();
   }
 }

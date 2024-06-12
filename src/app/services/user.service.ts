@@ -32,7 +32,13 @@ export class UserService {
 
   currentUser?: User;
 
-  // tracks the login state of user
+  // tracks state of current user's data
+  private userSubject = new BehaviorSubject<User>(
+    this.getUserFromLocalStorage()
+  );
+  userSubject$ = this.userSubject.asObservable();
+
+  // tracks login state of user
   private loginStatus = new BehaviorSubject<boolean>(this.isLoggedIn());
   isLoggedIn$ = this.loginStatus.asObservable();
 
@@ -58,6 +64,17 @@ export class UserService {
     )!;
 
     return this.currentUser;
+  }
+
+  // fetches user data from local storage
+  getUserFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('user')!);
+  }
+
+  // updates user
+  updateUser(user: User) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.userSubject.next(user);
   }
 
   // checks if the provided password is valid
@@ -108,22 +125,17 @@ export class UserService {
     return user;
   }
 
-  // updates user data
-  editUser(user: User) {
-
-  }
-
-  //* todo: move these to AuthService *//
-  
   // logs the user in
   login(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
+    this.currentUser = user;
+    this.userSubject.next(user);
     this.loginStatus.next(true);
   }
 
   // checks if the user is logged in
   isLoggedIn() {
-    return !!localStorage.getItem("user");
+    return !!localStorage.getItem('user');
   }
 
   // logs the user out
