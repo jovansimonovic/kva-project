@@ -1,4 +1,7 @@
-<div class="h-dvh flex flex-col justify-center items-center">
+<div
+  class="h-dvh flex flex-col justify-center items-center"
+  *ngIf="cartItems.length !== 0"
+>
   <table mat-table [dataSource]="cartItems">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -27,7 +30,11 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <button mat-raised-button color="accent" class="mt-6 mr-10 float-end">
-    CHECKOUT
-  </button>
+  <button mat-raised-button color="accent" class="mt-10">CHECKOUT</button>
+</div>
+<div
+  class="h-dvh flex flex-col justify-center items-center"
+  *ngIf="cartItems.length === 0"
+>
+  <span class="text-4xl">Your cart is empty</span>
 </div>
