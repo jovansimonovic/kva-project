@@ -1,4 +1,4 @@
-<div class="my-20 flex flex-col">
+<div class="my-20">
   <div class="text-center">
     <mat-form-field class="w-[350px]">
       <input
@@ -38,50 +38,71 @@
         </ul>
       </div>
     </div> -->
-    <div class="flex flex-col">
-      <div class="flex flex-wrap justify-center items-center">
-        <div *ngFor="let product of paginatedProducts">
-          <mat-card class="w-[300px] m-4 hover:scale-105 duration-300">
-            <mat-card-header class="flex justify-center">
-              <mat-card-title>{{ product.name }}</mat-card-title>
-              <mat-card-subtitle class="text-center">{{
-                product.category
-              }}</mat-card-subtitle>
-            </mat-card-header>
-            <img
-              mat-card-image
-              [src]="product.image"
-              alt="Product image"
-              class="w-full h-[250px] object-cover cursor-pointer"
-              (click)="viewProductDetails(product.id)"
-            />
-            <mat-card-content class="text-center">
-              <p>
-                {{ product.description }}
-              </p>
-            </mat-card-content>
-            <mat-card-actions class="flex justify-between mx-4">
-              <span class="text-2xl">{{ product.price }}€</span>
-              <button
-                mat-icon-button
-                color="primary"
-                (click)="addToCart(product)"
-              >
-                <mat-icon>add_shopping_cart</mat-icon>
-              </button>
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </div>
-      <div class="flex justify-center mt-4">
-        <mat-paginator
-          [length]="totalProducts"
-          [pageSize]="pageSize"
-          [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
-          (page)="handlePageChange($event)"
-        >
-        </mat-paginator>
+    <div class="ml-4">
+      <span class="text-xl font-bold">Categories:</span>
+      <ul>
+        <li><mat-checkbox>Casual</mat-checkbox></li>
+        <li><mat-checkbox>Formal</mat-checkbox></li>
+        <li><mat-checkbox>Sport</mat-checkbox></li>
+      </ul>
+      <mat-divider class="pb-2"></mat-divider>
+      <span class="text-xl font-bold">Sizes:</span>
+      <ul>
+        <li><mat-checkbox>S</mat-checkbox></li>
+        <li><mat-checkbox>M</mat-checkbox></li>
+        <li><mat-checkbox>L</mat-checkbox></li>
+        <li><mat-checkbox>XL</mat-checkbox></li>
+      </ul>
+      <mat-divider class="pb-2"></mat-divider>
+      <span class="text-xl font-bold">Price:</span>
+      <br />
+      <mat-slider min="0" max="1000">
+        <input value="0" matSliderStartThumb />
+        <input value="1000" matSliderEndThumb />
+      </mat-slider>
+    </div>
+    <div class="flex flex-wrap justify-center items-center">
+      <div *ngFor="let product of paginatedProducts">
+        <mat-card class="w-[300px] m-4 hover:scale-105 duration-300">
+          <mat-card-header class="flex justify-center">
+            <mat-card-title>{{ product.name }}</mat-card-title>
+            <mat-card-subtitle class="text-center">{{
+              product.category
+            }}</mat-card-subtitle>
+          </mat-card-header>
+          <img
+            mat-card-image
+            [src]="product.image"
+            alt="Product image"
+            class="w-full h-[250px] object-cover cursor-pointer"
+            (click)="viewProductDetails(product.id)"
+          />
+          <mat-card-content class="text-center">
+            <p>
+              {{ product.description }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions class="flex justify-between mx-4">
+            <span class="text-2xl">{{ product.price }}€</span>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="addToCart(product)"
+            >
+              <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
       </div>
     </div>
+  </div>
+  <div class="flex justify-center mt-4">
+    <mat-paginator
+      [length]="totalProducts"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      (page)="handlePageChange($event)"
+    >
+    </mat-paginator>
   </div>
 </div>

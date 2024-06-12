@@ -88,12 +88,34 @@ export class ProductService {
     },
     {
       id: 7,
-      name: 'Nike Dunk High',
-      price: 28.99,
+      name: 'Nike Shoes',
+      price: 189.99,
       image:
         'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/99486859-0ff3-46b4-949b-2d16af2ad421/custom-nike-dunk-high-by-you-shoes.png',
       description:
         'Lifestyle sneakers designed to bring retro style to modern age',
+      category: 'Casual',
+      size: "M"
+    },
+    {
+      id: 8,
+      name: 'White printed t-shirt',
+      price: 14,
+      image:
+        'https://m.media-amazon.com/images/I/81wy4PsxSCL._AC_UY1100_.jpg',
+      description:
+        'White shirt with gray and brown geometric print. Ideal for hot summer days',
+      category: 'Casual',
+      size: "S"
+    },
+    {
+      id: 9,
+      name: 'Gray short pants',
+      price: 17.99,
+      image:
+        'https://down-ph.img.susercontent.com/file/90fefcd7516fdef46138d9e7d07dfe47',
+      description:
+        'Simple gray pants ',
       category: 'Casual',
       size: "M"
     },
