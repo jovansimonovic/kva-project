@@ -38,7 +38,7 @@ export class LoginComponent {
 
       this.userService.login(user);
 
-      this.snackBar.open('Login successful! Enjoy your stay.', 'Close', {
+      this.snackBar.open('Login successful! Enjoy your stay', 'Close', {
         duration: 5000,
       });
 

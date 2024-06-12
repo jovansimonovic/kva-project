@@ -41,7 +41,7 @@ export class SignupComponent {
       );
 
       this.snackBar.open(
-        'Registration successful! Welcome to KVA Clothes.',
+        'Registration successful! Welcome to KVA Clothes',
         'Close',
         { duration: 5000 }
       );

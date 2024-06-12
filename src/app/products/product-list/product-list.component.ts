@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product, ProductService } from '../../services/product.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,7 @@ export class ProductListComponent implements OnInit {
 
   totalProducts!: number;
   paginatedProducts!: Array<Product>;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 0;
   pageSizeOptions = [5, 10, 15, 20];
   showPageSizeOptions = true;
@@ -26,7 +27,7 @@ export class ProductListComponent implements OnInit {
     this.paginateProducts();
   }
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService, private router: Router, private cartService: CartService) {}
 
   // handles page change
   handlePageChange(event: PageEvent) {
@@ -65,5 +66,10 @@ export class ProductListComponent implements OnInit {
   // and passes the id of clicked product
   viewProductDetails(id: number) {
     this.router.navigate(['/product-list', id]);
+  }
+
+  // adds item to cart
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
   }
 }

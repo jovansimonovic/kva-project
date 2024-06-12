@@ -70,18 +70,30 @@
       <div class="hidden sm:flex items-center gap-2">
         <div>
           <button mat-icon-button routerLink="cart">
-            <mat-icon matBadge="15" matBadgeColor="warn"
-              >shopping_cart</mat-icon
-            >
+            <mat-icon> shopping_cart </mat-icon>
+            <!-- <mat-icon matBadge="0" matBadgeColor="warn">
+              shopping_cart
+            </mat-icon> -->
           </button>
           <button *ngIf="isLoggedIn" mat-icon-button routerLink="profile">
             <mat-icon>account_circle</mat-icon>
           </button>
         </div>
-        <button *ngIf="!isLoggedIn" mat-raised-button color="accent" routerLink="login">
+        <button
+          *ngIf="!isLoggedIn"
+          mat-raised-button
+          color="accent"
+          routerLink="login"
+        >
           Log In
         </button>
-        <button *ngIf="isLoggedIn" mat-raised-button color="accent" routerLink="login" (click)="logout()">
+        <button
+          *ngIf="isLoggedIn"
+          mat-raised-button
+          color="accent"
+          routerLink="login"
+          (click)="logout()"
+        >
           Log Out
         </button>
       </div>
