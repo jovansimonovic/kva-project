@@ -63,6 +63,7 @@ export class CartComponent implements OnInit {
   }
 
   confirmOrder() {
+    localStorage.removeItem("cart");
     this.snackBar.open('Order created successfully', 'Close', {
       duration: 5000,
     });
