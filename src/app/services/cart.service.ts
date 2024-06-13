@@ -12,8 +12,17 @@ export class CartService {
 
   // adds item to cart
   addToCart(product: Product) {
-    product.quantity = 1;
-    CartService.cart.push(product);
+    const productExists = CartService.cart.some(
+      (item) => item.id === product.id
+    );
+
+    if (!productExists) {
+      product.quantity = 1;
+      CartService.cart.push(product);
+    } else {
+      product.quantity += 1;
+    }
+
     localStorage.setItem('cart', JSON.stringify(CartService.cart));
     this.snackBar.open('Item added to cart', 'Close', { duration: 5000 });
   }

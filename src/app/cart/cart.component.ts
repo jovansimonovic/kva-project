@@ -21,16 +21,32 @@ export class CartComponent implements OnInit {
     this.cartItems = this.cartService.getCartItems();
   }
 
-  increaseQuantity() {
-    
+  // increases quantity of product
+  increaseQuantity(id: number) {
+    let itemToIncrement = this.cartItems.find((item) => item.id === id);
+
+    if (itemToIncrement) {
+      itemToIncrement.quantity += 1;
+      localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    }
   }
 
-  decreaseQuantity() {
-    
+  // decreases quantity of product
+  decreaseQuantity(id: number) {
+    let itemToDecrement = this.cartItems.find((item) => item.id === id);
+
+    if (itemToDecrement) {
+      if (itemToDecrement.quantity > 1) {
+        itemToDecrement.quantity -= 1;
+        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      }
+    }
   }
 
+  // removes item from cart
   removeItem(id: number) {
     this.cartItems = this.cartItems.filter((item) => item.id !== id);
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
     this.snackBar.open('Item removed from cart', 'Close', { duration: 5000 });
   }
 }

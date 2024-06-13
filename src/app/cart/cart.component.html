@@ -34,7 +34,7 @@
             <button
               mat-icon-button
               color="primary"
-              (click)="item.quantity = item.quantity + 1"
+              (click)="increaseQuantity(item.id)"
             >
               +
             </button>
@@ -42,7 +42,7 @@
             <button
               mat-icon-button
               color="primary"
-              (click)="item.quantity = item.quantity - 1"
+              (click)="decreaseQuantity(item.id)"
             >
               -
             </button>

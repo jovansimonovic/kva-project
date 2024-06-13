@@ -8,7 +8,7 @@ export interface Product {
   description: string;
   category: 'Casual' | 'Sport' | 'Formal';
   size: 'S' | 'M' | 'L' | 'XL';
-  quantity?: number;
+  quantity: number;
 }
 
 @Injectable({
