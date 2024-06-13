@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Product, ProductService } from '../../services/product.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { CartService } from '../../services/cart.service';
 export class ProductListComponent implements OnInit {
   products!: Array<Product>;
   filteredProducts!: Array<Product>;
+  selectedCategory: string = 'All';
 
   totalProducts!: number;
   paginatedProducts!: Array<Product>;
@@ -30,7 +31,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   // handles page change
@@ -64,6 +66,21 @@ export class ProductListComponent implements OnInit {
     this.totalProducts = this.filteredProducts.length;
     this.currentPage = 0;
     this.paginateProducts();
+  }
+
+  // filters products by selected category
+  filterByCategory() {
+    console.log(this.selectedCategory);
+
+    if (this.selectedCategory === 'All') {
+      this.filteredProducts = this.products;
+    } else {
+      this.filteredProducts = this.products.filter(
+        (product) => product.category === this.selectedCategory
+      );
+    }
+
+    this.cdr.detectChanges();
   }
 
   // redirects to product details component

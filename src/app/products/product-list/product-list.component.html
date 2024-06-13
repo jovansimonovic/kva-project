@@ -10,41 +10,21 @@
     </mat-form-field>
   </div>
   <div class="flex">
-    <!-- <div class="ml-2">
-      <div class="mb-2">
-        <span class="text-2xl">Categories:</span>
-        <ul>
-          <li><mat-checkbox>Casual</mat-checkbox></li>
-          <li><mat-checkbox>Formal</mat-checkbox></li>
-          <li><mat-checkbox>Sport</mat-checkbox></li>
-        </ul>
-      </div>
-      <mat-divider></mat-divider>
-      <div class="my-2">
-        <span class="text-2xl">Price:</span>
-        <mat-slider min="200" max="500">
-          <input value="300" matSliderStartThumb />
-          <input value="400" matSliderEndThumb />
-        </mat-slider>
-      </div>
-      <mat-divider></mat-divider>
-      <div class="mt-2">
-        <span class="text-2xl">Size:</span>
-        <ul>
-          <li><mat-checkbox>S</mat-checkbox></li>
-          <li><mat-checkbox>M</mat-checkbox></li>
-          <li><mat-checkbox>L</mat-checkbox></li>
-          <li><mat-checkbox>XL</mat-checkbox></li>
-        </ul>
-      </div>
-    </div> -->
     <div class="ml-4">
       <span class="text-xl font-bold">Categories:</span>
-      <ul>
-        <li><mat-checkbox>Casual</mat-checkbox></li>
-        <li><mat-checkbox>Formal</mat-checkbox></li>
-        <li><mat-checkbox>Sport</mat-checkbox></li>
-      </ul>
+      <br />
+      <mat-radio-group
+        [(ngModel)]="selectedCategory"
+        (change)="filterByCategory()"
+      >
+        <mat-radio-button value="All">All</mat-radio-button>
+        <br />
+        <mat-radio-button value="Casual">Casual</mat-radio-button>
+        <br />
+        <mat-radio-button value="Formal">Formal</mat-radio-button>
+        <br />
+        <mat-radio-button value="Sport">Sport</mat-radio-button>
+      </mat-radio-group>
       <mat-divider class="pb-2"></mat-divider>
       <span class="text-xl font-bold">Sizes:</span>
       <ul>

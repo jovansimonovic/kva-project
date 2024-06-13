@@ -21,6 +21,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
 import { EditComponent } from './user/edit/edit.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -43,8 +44,14 @@ import { EditComponent } from './user/edit/edit.component';
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatRadioModule,
   ],
-  providers: [provideAnimationsAsync(), UserService, ProductService, CartService],
+  providers: [
+    provideAnimationsAsync(),
+    UserService,
+    ProductService,
+    CartService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

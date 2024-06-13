@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTableModule } from '@angular/material/table';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSliderModule,
     MatBadgeModule,
     MatTableModule,
+    MatRadioModule
   ],
   exports: [
     MatToolbarModule,
@@ -55,6 +57,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSliderModule,
     MatBadgeModule,
     MatTableModule,
+    MatRadioModule
   ],
 })
 export class MaterialModule {}
