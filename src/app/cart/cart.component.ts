@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { Product } from '../services/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -10,12 +11,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartComponent implements OnInit {
   cartItems!: Array<Product>;
-  
+
   displayedColumns = ['name', 'image', 'size', 'price', 'options'];
 
   constructor(
     private cartService: CartService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +60,12 @@ export class CartComponent implements OnInit {
     }, 0);
 
     return Math.round(price * 100) / 100;
+  }
+
+  confirmOrder() {
+    this.snackBar.open('Order created successfully', 'Close', {
+      duration: 5000,
+    });
+    this.router.navigate(['']);
   }
 }

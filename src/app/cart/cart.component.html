@@ -64,7 +64,7 @@
   </table>
   <div class="flex justify-between items-center w-[450px] mt-8">
     <span class="text-2xl">Price: {{ calculateTotalPrice() }}€ </span
-    ><button mat-raised-button color="accent">CHECKOUT</button>
+    ><button mat-raised-button color="accent" (click)="confirmOrder()">CHECKOUT</button>
   </div>
 </div>
 <div

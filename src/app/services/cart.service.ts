@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from './product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
