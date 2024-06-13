@@ -7,12 +7,14 @@ import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.css',
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
   products!: Array<Product>;
   filteredProducts!: Array<Product>;
   selectedCategory: string = 'All';
+  selectedSizes: Set<string> = new Set<string>();
+  selectedPriceRange: [number, number] = [0, 1000];
 
   totalProducts!: number;
   paginatedProducts!: Array<Product>;
@@ -46,7 +48,7 @@ export class ProductListComponent implements OnInit {
   paginateProducts() {
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.paginatedProducts = this.filteredProducts!.slice(startIndex, endIndex);
+    this.paginatedProducts = this.filteredProducts.slice(startIndex, endIndex);
   }
 
   // filters products based on the search input value
@@ -63,23 +65,51 @@ export class ProductListComponent implements OnInit {
       this.filteredProducts = this.products;
     }
 
-    this.totalProducts = this.filteredProducts.length;
-    this.currentPage = 0;
-    this.paginateProducts();
+    this.filterProducts();
   }
 
   // filters products by selected category
   filterByCategory() {
-    console.log(this.selectedCategory);
+    this.filterProducts();
+  }
 
-    if (this.selectedCategory === 'All') {
-      this.filteredProducts = this.products;
-    } else {
-      this.filteredProducts = this.products.filter(
-        (product) => product.category === this.selectedCategory
-      );
+  // filters products by selected sizes
+  filterBySize(size?: string) {
+    if (size) {
+      if (this.selectedSizes.has(size)) {
+        this.selectedSizes.delete(size);
+      } else {
+        this.selectedSizes.add(size);
+      }
     }
 
+    this.filterProducts();
+  }
+
+  // filters products by selected price range
+  filterByPrice() {
+    this.filterProducts();
+  }
+
+  // combines all filter criteria
+  filterProducts() {
+    this.filteredProducts = this.products.filter((product) => {
+      const matchesCategory =
+        this.selectedCategory === 'All' ||
+        product.category === this.selectedCategory;
+      const matchesSize =
+        this.selectedSizes.size === 0 ||
+        this.selectedSizes.has(product.size);
+      const matchesPrice =
+        product.price >= this.selectedPriceRange[0] &&
+        product.price <= this.selectedPriceRange[1];
+
+      return matchesCategory && matchesSize && matchesPrice;
+    });
+
+    this.totalProducts = this.filteredProducts.length;
+    this.currentPage = 0;
+    this.paginateProducts();
     this.cdr.detectChanges();
   }
 
