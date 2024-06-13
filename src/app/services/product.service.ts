@@ -7,7 +7,8 @@ export interface Product {
   image: string;
   description: string;
   category: 'Casual' | 'Sport' | 'Formal';
-  size: "S" | "M" | "L" | "XL"
+  size: 'S' | 'M' | 'L' | 'XL';
+  quantity?: number;
 }
 
 @Injectable({
@@ -23,7 +24,8 @@ export class ProductService {
         'https://st.mngbcn.com/rcs/pics/static/T6/fotos/S20/67034456_09.jpg?ts=1703239418849&imwidth=360&imdensity=2',
       description: 'Minimalistic brown shirt for everyday occasions',
       category: 'Casual',
-      size: "M"
+      size: 'M',
+      quantity: 0,
     },
     {
       id: 1,
@@ -33,7 +35,8 @@ export class ProductService {
         'https://assets.ajio.com/medias/sys_master/root/20231012/SHy7/65280fb2ddf779151937c284/-473Wx593H-469514976-purple-MODEL.jpg',
       description: 'Minimalistic shirt for formal occasions',
       category: 'Formal',
-      size: "L"
+      size: 'L',
+      quantity: 0,
     },
     {
       id: 2,
@@ -44,7 +47,8 @@ export class ProductService {
       description:
         'Compression shirt made from breathable and non-irritating materials',
       category: 'Sport',
-      size: "M"
+      size: 'M',
+      quantity: 0,
     },
     {
       id: 3,
@@ -54,7 +58,8 @@ export class ProductService {
       description:
         'Lightweight versatile jacket that will keep you warm and stylish',
       category: 'Casual',
-      size: "XL"
+      size: 'XL',
+      quantity: 0,
     },
     {
       id: 4,
@@ -64,7 +69,8 @@ export class ProductService {
         'https://cheapsalemarket.com/wp-content/uploads/2021/06/Summer-Mid-Knee-Length-Men-Short-Jeans-Denim-Pants3.jpg',
       description: 'Shorts made from jeans. Ideal for hot summer days',
       category: 'Casual',
-      size: "L"
+      size: 'L',
+      quantity: 0,
     },
     {
       id: 5,
@@ -74,7 +80,8 @@ export class ProductService {
         'https://i.pinimg.com/736x/92/1e/93/921e93d7a9cf44af2c94cf79e263f91c.jpg',
       description: 'Baggy pants made for tech savvies',
       category: 'Casual',
-      size: "M"
+      size: 'M',
+      quantity: 0,
     },
     {
       id: 6,
@@ -84,7 +91,8 @@ export class ProductService {
         'https://i.pinimg.com/736x/bb/e5/2a/bbe52a9d74c0834e3ddb7b3d7bfbbe56.jpg',
       description: 'Made from lightweight and breathable fabric',
       category: 'Sport',
-      size: "S"
+      size: 'S',
+      quantity: 0,
     },
     {
       id: 7,
@@ -95,18 +103,19 @@ export class ProductService {
       description:
         'Lifestyle sneakers designed to bring retro style to modern age',
       category: 'Casual',
-      size: "M"
+      size: 'M',
+      quantity: 0,
     },
     {
       id: 8,
       name: 'White printed t-shirt',
       price: 14,
-      image:
-        'https://m.media-amazon.com/images/I/81wy4PsxSCL._AC_UY1100_.jpg',
+      image: 'https://m.media-amazon.com/images/I/81wy4PsxSCL._AC_UY1100_.jpg',
       description:
         'White shirt with gray and brown geometric print. Ideal for hot summer days',
       category: 'Casual',
-      size: "S"
+      size: 'S',
+      quantity: 0,
     },
     {
       id: 9,
@@ -114,10 +123,10 @@ export class ProductService {
       price: 17.99,
       image:
         'https://down-ph.img.susercontent.com/file/90fefcd7516fdef46138d9e7d07dfe47',
-      description:
-        'Simple gray pants ',
+      description: 'Simple gray pants ',
       category: 'Casual',
-      size: "M"
+      size: 'M',
+      quantity: 0,
     },
   ];
 

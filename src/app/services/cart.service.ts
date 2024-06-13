@@ -12,8 +12,9 @@ export class CartService {
 
   // adds item to cart
   addToCart(product: Product) {
+    product.quantity = 1;
     CartService.cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(CartService.cart));
+    localStorage.setItem('cart', JSON.stringify(CartService.cart));
     this.snackBar.open('Item added to cart', 'Close', { duration: 5000 });
   }
 
