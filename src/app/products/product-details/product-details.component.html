@@ -21,7 +21,7 @@
     </div>
     <div class="text-4xl mt-4">{{ product.price }}€</div>
     <div class="text-center mt-8 sm:mt-0">
-      <button mat-raised-button color="accent" class="w-[80%]">
+      <button mat-raised-button color="accent" class="w-[80%]" (click)="addToCart(product)">
         ADD TO CART
       </button>
     </div>

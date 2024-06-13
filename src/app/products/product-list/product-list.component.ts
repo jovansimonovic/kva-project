@@ -27,7 +27,11 @@ export class ProductListComponent implements OnInit {
     this.paginateProducts();
   }
 
-  constructor(private productService: ProductService, private router: Router, private cartService: CartService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   // handles page change
   handlePageChange(event: PageEvent) {
