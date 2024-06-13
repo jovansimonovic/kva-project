@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product, ProductService } from '../../services/product.service';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
   selectedCategory: string = 'All';
   selectedSizes: Set<string> = new Set<string>();
   selectedPriceRange: [number, number] = [0, 1000];
+  searchTerm = '';
 
   totalProducts!: number;
   paginatedProducts!: Array<Product>;
@@ -33,8 +34,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private cartService: CartService,
-    private cdr: ChangeDetectorRef
+    private cartService: CartService
   ) {}
 
   // handles page change
@@ -53,18 +53,16 @@ export class ProductListComponent implements OnInit {
 
   // filters products based on the search input value
   doSearch(inputValue: string) {
-    const searchTerm = inputValue.trim().toLowerCase();
-
-    if (searchTerm) {
-      this.filteredProducts = this.products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.category.toLowerCase().includes(searchTerm)
-      );
+    this.searchTerm = inputValue.trim().toLowerCase();
+    if (this.searchTerm) {
+      this.filterProducts();
     } else {
       this.filteredProducts = this.products;
     }
 
+    this.totalProducts = this.filteredProducts.length;
+    this.currentPage = 0;
+    this.paginateProducts();
     this.filterProducts();
   }
 
@@ -94,23 +92,29 @@ export class ProductListComponent implements OnInit {
   // combines all filter criteria
   filterProducts() {
     this.filteredProducts = this.products.filter((product) => {
+      const matchesSearchTerm =
+        this.searchTerm === '' ||
+        product.name.toLowerCase().includes(this.searchTerm);
+
       const matchesCategory =
         this.selectedCategory === 'All' ||
         product.category === this.selectedCategory;
+
       const matchesSize =
-        this.selectedSizes.size === 0 ||
-        this.selectedSizes.has(product.size);
+        this.selectedSizes.size === 0 || this.selectedSizes.has(product.size);
+
       const matchesPrice =
         product.price >= this.selectedPriceRange[0] &&
         product.price <= this.selectedPriceRange[1];
 
-      return matchesCategory && matchesSize && matchesPrice;
+      return (
+        matchesCategory && matchesSize && matchesPrice && matchesSearchTerm
+      );
     });
 
     this.totalProducts = this.filteredProducts.length;
     this.currentPage = 0;
     this.paginateProducts();
-    this.cdr.detectChanges();
   }
 
   // redirects to product details component

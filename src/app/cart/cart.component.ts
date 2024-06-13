@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartComponent implements OnInit {
   cartItems!: Array<Product>;
+  
   displayedColumns = ['name', 'image', 'size', 'price', 'options'];
 
   constructor(
@@ -50,6 +51,7 @@ export class CartComponent implements OnInit {
     this.snackBar.open('Item removed from cart', 'Close', { duration: 5000 });
   }
 
+  // calculates total price of all products in cart
   calculateTotalPrice() {
     let price = this.cartItems.reduce((price, item) => {
       return price + item.price * item.quantity;

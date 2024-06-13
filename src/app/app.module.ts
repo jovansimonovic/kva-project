@@ -10,7 +10,6 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -31,7 +30,6 @@ import { MatRadioModule } from '@angular/material/radio';
     ProfileComponent,
     HomeComponent,
     NavbarComponent,
-    FooterComponent,
     ProductListComponent,
     ProductDetailsComponent,
     CartComponent,
