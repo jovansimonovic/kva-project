@@ -57,52 +57,35 @@
 
   <!-- toolbar -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="flex justify-between fixed top-0 z-10">
-      <a routerLink="/" class="text-2xl">KVA Clothes</a>
+    <mat-toolbar color="white" class="flex justify-between fixed top-0 z-10">
+      <a routerLink="/" class="text-2xl">Nike Shop</a>
       <div class="hidden sm:block">
         <ul class="flex gap-2">
-          <li><button mat-button routerLink="/">Home</button></li>
-          <li>
-            <button mat-button routerLink="product-list">Products</button>
-          </li>
+          <li><button mat-button routerLink="/" class="nav-button">Home</button></li>
+          <li><button mat-button routerLink="product-list" class="nav-button">Products</button></li>
         </ul>
       </div>
       <div class="hidden sm:flex items-center gap-2">
         <div>
           <button mat-icon-button routerLink="cart">
-            <mat-icon>shopping_cart</mat-icon>
-            <!-- <mat-icon matBadge="0" matBadgeColor="warn">
-              shopping_cart
-            </mat-icon> -->
+            <mat-icon matBadge="15" matBadgeColor="warn"
+              >shopping_cart</mat-icon
+            >
           </button>
           <button *ngIf="isLoggedIn" mat-icon-button routerLink="profile">
             <mat-icon>account_circle</mat-icon>
           </button>
         </div>
-        <button
-          *ngIf="!isLoggedIn"
-          mat-raised-button
-          color="accent"
-          routerLink="login"
-        >
+        <button *ngIf="!isLoggedIn" mat-raised-button color="accent" routerLink="login">
           Log In
         </button>
-        <button
-          *ngIf="isLoggedIn"
-          mat-raised-button
-          color="accent"
-          routerLink="login"
-          (click)="logout()"
-        >
+        <button *ngIf="isLoggedIn" mat-raised-button color="accent" routerLink="login" (click)="logout()">
           Log Out
         </button>
       </div>
       <div class="sm:hidden">
         <button mat-icon-button routerLink="cart">
-          <mat-icon>shopping_cart</mat-icon>
-          <!-- <mat-icon matBadge="0" matBadgeColor="warn">
-            shopping_cart
-          </mat-icon> -->
+          <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
         </button>
         <button mat-icon-button (click)="sidenav.open()">
           <mat-icon>menu</mat-icon>

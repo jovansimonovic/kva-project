@@ -19,6 +19,10 @@
       Size:
       {{ product.size }}
     </div>
+    <div class="text-xl mt-2">
+      Added date:
+      {{ product.addedDate }}
+    </div>
     <div class="text-4xl mt-4">{{ product.price }}€</div>
     <div class="text-center mt-8 sm:mt-0">
       <button mat-raised-button color="accent" class="w-[80%]" (click)="addToCart(product)">
