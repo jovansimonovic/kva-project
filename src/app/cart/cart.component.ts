@@ -49,4 +49,12 @@ export class CartComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(this.cartItems));
     this.snackBar.open('Item removed from cart', 'Close', { duration: 5000 });
   }
+
+  calculateTotalPrice() {
+    let price = this.cartItems.reduce((price, item) => {
+      return price + item.price * item.quantity;
+    }, 0);
+
+    return Math.round(price * 100) / 100;
+  }
 }

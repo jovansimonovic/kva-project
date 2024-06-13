@@ -34,7 +34,7 @@
             <button
               mat-icon-button
               color="primary"
-              (click)="increaseQuantity(item.id)"
+              (click)="increaseQuantity(item.id); calculateTotalPrice()"
             >
               +
             </button>
@@ -42,7 +42,7 @@
             <button
               mat-icon-button
               color="primary"
-              (click)="decreaseQuantity(item.id)"
+              (click)="decreaseQuantity(item.id); calculateTotalPrice()"
             >
               -
             </button>
@@ -62,7 +62,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <button mat-raised-button color="accent" class="mt-10">CHECKOUT</button>
+  <div class="flex justify-between items-center w-[450px] mt-8">
+    <span class="text-2xl">Price: {{ calculateTotalPrice() }}€ </span
+    ><button mat-raised-button color="accent">CHECKOUT</button>
+  </div>
 </div>
 <div
   class="h-dvh flex flex-col justify-center items-center"
