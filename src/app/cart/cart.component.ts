@@ -3,6 +3,7 @@ import { CartService } from '../services/cart.service';
 import { Product } from '../services/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private orderService: OrderService
   ) {}
 
   ngOnInit(): void {
@@ -59,12 +61,16 @@ export class CartComponent implements OnInit {
       return price + item.price * item.quantity;
     }, 0);
 
-    return Math.round(price * 100) / 100;  }
+    return Math.round(price * 100) / 100;
+  }
 
   confirmOrder() {
+    this.orderService.createOrder(this.cartItems);
     localStorage.removeItem('cart');
     this.cartService.updateCartItems([]);
-    this.snackBar.open('Order created successfully', 'Close', { duration: 5000 });
-    this.router.navigate(['']);
+    this.snackBar.open('Order created successfully', 'Close', {
+      duration: 5000,
+    });
+    this.router.navigate(['profile']);
   }
 }
