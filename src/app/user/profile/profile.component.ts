@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, UserService } from '../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditComponent } from '../edit/edit.component';
+import { Order, OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,13 +11,22 @@ import { EditComponent } from '../edit/edit.component';
 })
 export class ProfileComponent implements OnInit {
   user!: User;
+  orders: Order[] = [];
 
-  constructor(private dialog: MatDialog, private userService: UserService) {}
+  displayedColumns = ['id', 'createdAt', 'products', 'totalPrice'];
+
+  constructor(
+    private dialog: MatDialog,
+    private userService: UserService,
+    private orderService: OrderService
+  ) {}
 
   ngOnInit(): void {
     this.userService.userSubject$.subscribe((user) => {
       this.user = user;
     });
+
+    this.orders = this.orderService.getAllOrders();
   }
 
   // opens edit dialog

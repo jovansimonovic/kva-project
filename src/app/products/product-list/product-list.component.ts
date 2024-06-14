@@ -54,6 +54,7 @@ export class ProductListComponent implements OnInit {
   // filters products based on the search input value
   doSearch(inputValue: string) {
     this.searchTerm = inputValue.trim().toLowerCase();
+
     if (this.searchTerm) {
       this.filterProducts();
     } else {
