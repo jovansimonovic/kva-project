@@ -2,40 +2,61 @@ import { Injectable } from '@angular/core';
 import { Product } from './product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  static cart: Array<Product> = [];
+  private static cart: Product[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
-  private cartItemCount = new BehaviorSubject<number>(0);
+  private cartItemsSubject = new BehaviorSubject<Product[]>(CartService.cart);
+  cartItems$ = this.cartItemsSubject.asObservable();
+
+  private cartItemCount = new BehaviorSubject<number>(this.getCartItemCount());
   cartItemCount$ = this.cartItemCount.asObservable();
 
   constructor(private snackBar: MatSnackBar) {}
 
+  private getCartItemCount(): number {
+    return CartService.cart.reduce((count, item) => count + item.quantity, 0);
+  }
+
   // adds item to cart
   addToCart(product: Product) {
-    const productExists = CartService.cart.some(
-      (item) => item.id === product.id
-    );
+    const productIndex = CartService.cart.findIndex((item) => item.id === product.id);
 
-    if (!productExists) {
+    if (productIndex === -1) {
       product.quantity = 1;
       CartService.cart.push(product);
-      this.cartItemCount.next(this.cartItemCount.value + 1);
     } else {
-      product.quantity += 1;
+      CartService.cart[productIndex].quantity += 1;
     }
 
-    localStorage.setItem('cart', JSON.stringify(CartService.cart));
-
+    this.updateCart();
     this.snackBar.open('Item added to cart', 'Close', { duration: 5000 });
   }
 
   // returns all items in cart
-  getCartItems() {
-    return CartService.cart;
+  getCartItems(): Product[] {
+    return this.cartItemsSubject.getValue();
+  }
+
+  // removes item from cart
+  removeItem(id: number) {
+    CartService.cart = CartService.cart.filter((item) => item.id !== id);
+    this.updateCart();
+  }
+
+  // updates the cart in localStorage and notifies subscribers
+  private updateCart() {
+    localStorage.setItem('cart', JSON.stringify(CartService.cart));
+    this.cartItemsSubject.next(CartService.cart);
+    this.cartItemCount.next(this.getCartItemCount());
+  }
+
+  // updates the cart items and quantities
+  updateCartItems(items: Product[]) {
+    CartService.cart = items;
+    this.updateCart();
   }
 }

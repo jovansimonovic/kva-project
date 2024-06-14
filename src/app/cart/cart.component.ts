@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './cart.component.css',
 })
 export class CartComponent implements OnInit {
-  cartItems!: Array<Product>;
+  cartItems: Product[] = [];
 
   displayedColumns = ['name', 'image', 'size', 'price', 'options'];
 
@@ -21,27 +21,27 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
+    this.cartService.cartItems$.subscribe((items) => {
+      this.cartItems = items;
+    });
   }
 
   // increases quantity of product
   increaseQuantity(id: number) {
     let itemToIncrement = this.cartItems.find((item) => item.id === id);
-
     if (itemToIncrement) {
       itemToIncrement.quantity += 1;
-      localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      this.cartService.updateCartItems(this.cartItems);
     }
   }
 
   // decreases quantity of product
   decreaseQuantity(id: number) {
     let itemToDecrement = this.cartItems.find((item) => item.id === id);
-
     if (itemToDecrement) {
       if (itemToDecrement.quantity > 1) {
         itemToDecrement.quantity -= 1;
-        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+        this.cartService.updateCartItems(this.cartItems);
       }
     }
   }
@@ -49,7 +49,7 @@ export class CartComponent implements OnInit {
   // removes item from cart
   removeItem(id: number) {
     this.cartItems = this.cartItems.filter((item) => item.id !== id);
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    this.cartService.updateCartItems(this.cartItems);
     this.snackBar.open('Item removed from cart', 'Close', { duration: 5000 });
   }
 
@@ -59,14 +59,12 @@ export class CartComponent implements OnInit {
       return price + item.price * item.quantity;
     }, 0);
 
-    return Math.round(price * 100) / 100;
-  }
+    return Math.round(price * 100) / 100;  }
 
   confirmOrder() {
-    localStorage.removeItem("cart");
-    this.snackBar.open('Order created successfully', 'Close', {
-      duration: 5000,
-    });
+    localStorage.removeItem('cart');
+    this.cartService.updateCartItems([]);
+    this.snackBar.open('Order created successfully', 'Close', { duration: 5000 });
     this.router.navigate(['']);
   }
 }
