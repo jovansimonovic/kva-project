@@ -26,7 +26,9 @@ export class ProfileComponent implements OnInit {
       this.user = user;
     });
 
-    this.orders = this.orderService.getAllOrders();
+    this.orders = this.orderService.getOrdersByUserId(
+      this.userService.getUserFromLocalStorage().id
+    );
   }
 
   // opens edit dialog

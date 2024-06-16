@@ -26,8 +26,14 @@ export class OrderService {
   }
 
   // returns all orders that match provided user id
-  getOrdersByUserId(id: number) {
+  getOrdersByUserId(userId: number) {
+    userId = this.userService.getUserFromLocalStorage().id;
 
+    let orders: Array<Order> = OrderService.dummyOrderList.filter(
+      (order) => order.userId === userId
+    );
+
+    return orders;
   }
 
   // creates an order and pushes it to dummyOrderList array
