@@ -53,21 +53,6 @@ export class UserService {
   private loginStatus = new BehaviorSubject<boolean>(this.isLoggedIn());
   isLoggedIn$ = this.loginStatus.asObservable();
 
-  // returns user based on the provided id
-  getUserById(id: number): User {
-    let foundUser!: User;
-
-    UserService.dummyUserList.find((user) => {
-      if (user.id === id) {
-        foundUser = user;
-      }
-    });
-
-    this.currentUser = foundUser;
-
-    return foundUser;
-  }
-
   // returns user based on the provided email
   getUserByEmail(email: string): User {
     this.currentUser = UserService.dummyUserList.find(

@@ -67,7 +67,6 @@ export class CartComponent implements OnInit {
   }
 
   confirmOrder() {
-    this.orderService.getOrdersByUserId(this.userService.getUserFromLocalStorage().id);
     if (this.userService.isLoggedIn()) {
       this.orderService.createOrder(this.cartItems);
       localStorage.removeItem('cart');

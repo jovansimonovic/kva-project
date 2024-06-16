@@ -29,20 +29,8 @@ export class EditComponent {
     if (phoneNumber.charAt(0) === '0') {
       phoneNumber = phoneNumber.slice(1);
     }
-
-    // todo: doesn't save changes if you don't change email and try relogging
+    
     this.userService.updateUser(this.currentUser);
-
-    // this.userService.registerUser(
-    //   this.currentUser.firstName,
-    //   this.currentUser.lastName,
-    //   this.currentUser.email,
-    //   this.currentUser.password,
-    //   this.currentUser.address,
-    //   this.currentUser.city,
-    //   this.currentUser.zipCode,
-    //   this.currentUser.phoneNumber
-    // );
 
     this.closeDialog();
 
