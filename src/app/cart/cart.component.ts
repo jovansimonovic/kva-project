@@ -4,6 +4,7 @@ import { Product } from '../services/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { OrderService } from '../services/order.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -19,7 +20,8 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -65,12 +67,16 @@ export class CartComponent implements OnInit {
   }
 
   confirmOrder() {
-    this.orderService.createOrder(this.cartItems);
-    localStorage.removeItem('cart');
-    this.cartService.updateCartItems([]);
-    this.snackBar.open('Order created successfully', 'Close', {
-      duration: 5000,
-    });
-    this.router.navigate(['profile']);
+    if (this.userService.isLoggedIn()) {
+      this.orderService.createOrder(this.cartItems);
+      localStorage.removeItem('cart');
+      this.cartService.updateCartItems([]);
+      this.snackBar.open('Order created successfully', 'Close', {
+        duration: 5000,
+      });
+      this.router.navigate(['profile']);
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 }

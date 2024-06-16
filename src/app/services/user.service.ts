@@ -28,6 +28,17 @@ export class UserService {
       zipCode: 13400,
       phoneNumber: '601234567',
     },
+    {
+      id: 1,
+      firstName: 'ime2',
+      lastName: 'prezime2',
+      email: 'korisnik2@gmail.com',
+      password: 'korisnik2',
+      address: 'adresa korisnik 2',
+      city: 'grad2',
+      zipCode: 14300,
+      phoneNumber: '607654321',
+    },
   ];
 
   currentUser?: User;
@@ -72,9 +83,21 @@ export class UserService {
   }
 
   // updates user
-  updateUser(user: User) {
-    localStorage.setItem('user', JSON.stringify(user));
-    this.userSubject.next(user);
+  updateUser(newUser: User) {
+    UserService.dummyUserList.find((user) => {
+      if (user.id === newUser.id) {
+        user.firstName = newUser.firstName;
+        user.lastName = newUser.lastName;
+        user.email = newUser.email;
+        user.password = newUser.password;
+        user.address = newUser.address;
+        user.city = newUser.city;
+        user.zipCode = newUser.zipCode;
+        user.phoneNumber = newUser.phoneNumber;
+      }
+    });
+    localStorage.setItem('user', JSON.stringify(newUser));
+    this.userSubject.next(newUser);
   }
 
   // checks if the provided password is valid
